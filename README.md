@@ -1,1 +1,1 @@
-# phy424_ami
+# PHY424 Applied Modern Interferometry
