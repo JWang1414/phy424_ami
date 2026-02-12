@@ -4,10 +4,13 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
 # Define global variables here
-FILE_PATH = 'data/data1.csv'
+FILE_NAME = 'data3.csv'
+FILE_PATH = 'data/'
+SAVE_PATH = 'data/clean/'
+SAVE_DATA = True
 
 # Import the data from csv
-df = pd.read_csv(FILE_PATH)
+df = pd.read_csv(FILE_PATH + FILE_NAME)
 
 time = df.iloc[:, 0].values
 amp = df.iloc[:, 1].values
@@ -23,6 +26,17 @@ cutoff = int(len(time) * 0.1)
 time = time[cutoff:-cutoff]
 amp = amp[cutoff:-cutoff]
 
-# Plot the data for testing
-plt.plot(time, amp)
-plt.show()
+# Smooth the signal with a moving average filter
+window_size = 5
+smooth_amp = np.convolve(amp, np.ones(window_size)/window_size, mode='valid')
+smooth_time = time[window_size-1:]
+
+if SAVE_DATA:
+    # Save the cleaned data to a new csv file
+    cleaned_df = pd.DataFrame({'Time': smooth_time, 'Amplitude': smooth_amp})
+    cleaned_df.to_csv(SAVE_PATH + FILE_NAME, index=False)
+else:
+    # Plot the data for testing
+    plt.plot(time, amp)
+    plt.plot(smooth_time, smooth_amp)
+    plt.show()
