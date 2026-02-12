@@ -1,0 +1,18 @@
+--- PEAKS.PY ---
+
+This is the output produced from peaks.py when run on the cleaned versions of data(1-3).csv, which is intended to measure the wavelength of the laser.
+
+Current file: data1.csv
+Average time between peaks: 0.397 seconds
+Standard deviation of time between peaks: 0.165 seconds
+Error of time between peaks: 0.016 seconds
+
+Current file: data2.csv
+Average time between peaks: 0.388 seconds
+Standard deviation of time between peaks: 0.125 seconds
+Error of time between peaks: 0.013 seconds
+
+Current file: data3.csv
+Average time between peaks: 0.405 seconds
+Standard deviation of time between peaks: 0.227 seconds
+Error of time between peaks: 0.024 seconds
