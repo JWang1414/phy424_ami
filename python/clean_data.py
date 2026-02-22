@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 FILE_NAME = 'data3.csv'
 FILE_PATH = 'data/'
 SAVE_PATH = 'data/clean/'
-SAVE_DATA = True
+SAVE_DATA = False
 
 # Import the data from csv
 df = pd.read_csv(FILE_PATH + FILE_NAME)
