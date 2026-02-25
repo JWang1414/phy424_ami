@@ -3,11 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
+# Change the font size
+plt.rcParams.update({'font.size': 14})
+
 # Define global variables here
-FILE_NAME = 'data3.csv'
+FILE_NAME = 'nb3.csv'
 FILE_PATH = 'data/'
 SAVE_PATH = 'data/clean/'
 SAVE_DATA = False
+PLOT_RAW = False
 
 # Import the data from csv
 df = pd.read_csv(FILE_PATH + FILE_NAME)
@@ -30,6 +34,15 @@ amp = amp[cutoff:-cutoff]
 window_size = 5
 smooth_amp = np.convolve(amp, np.ones(window_size)/window_size, mode='valid')
 smooth_time = time[window_size-1:]
+
+if PLOT_RAW:
+    # Plot the raw data to use in examples
+    plt.plot(time, amp)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Intensity (volts)')
+    plt.title('Raw signal data from the photodiode ' + FILE_NAME[:-4])
+    plt.savefig(f"images/raw_{FILE_NAME[:-4]}.png")
+    plt.clf()
 
 if SAVE_DATA:
     # Save the cleaned data to a new csv file
