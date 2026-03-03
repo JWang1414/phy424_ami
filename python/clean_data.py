@@ -7,10 +7,10 @@ from datetime import datetime, timedelta
 plt.rcParams.update({'font.size': 14})
 
 # Define global variables here
-FILE_NAME = 'nb3.csv'
+FILE_NAME = 'wavelength2.csv'
 FILE_PATH = 'data/'
 SAVE_PATH = 'data/clean/'
-SAVE_DATA = False
+SAVE_DATA = True
 PLOT_RAW = False
 
 # Import the data from csv
@@ -31,7 +31,7 @@ time = time[cutoff:-cutoff]
 amp = amp[cutoff:-cutoff]
 
 # Smooth the signal with a moving average filter
-window_size = 5
+window_size = 8
 smooth_amp = np.convolve(amp, np.ones(window_size)/window_size, mode='valid')
 smooth_time = time[window_size-1:]
 

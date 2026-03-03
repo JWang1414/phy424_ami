@@ -4,9 +4,12 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
 # Define global variables here
-FILE_NAME = 'data3.csv'
+FILE_NAME = 'old3.csv'
 FILE_PATH = 'data/clean/'
-SHOW_PLOT = False
+SHOW_PLOT = True
+
+# Define physical constants here
+motor_speed = 50/61 * 1e-6
 
 # Import the cleaned data from csv
 df = pd.read_csv(FILE_PATH + FILE_NAME)
@@ -29,11 +32,15 @@ avg_time = np.mean(time_between_peaks)
 std_time = np.std(time_between_peaks)
 err_time = std_time / np.sqrt(len(time_between_peaks))
 
+# Compute the wavelength of the laser
+wavelength = motor_speed * avg_time * 1e9
+wavelength_err = motor_speed * err_time * 1e9
+
 # Print the results
 print(f'Current file: {FILE_NAME}')
-print(f'Average time between peaks: {avg_time:.3f} seconds')
+print(f'Average time between peaks: {avg_time:.3f}±{err_time:.3f} seconds')
 print(f'Standard deviation of time between peaks: {std_time:.3f} seconds')
-print(f'Error of time between peaks: {err_time:.3f} seconds')
+print(f'Wavelength of the laser: {wavelength:.3e}±{wavelength_err:.3e} nm')
 
 # Plot the peaks for testing
 if SHOW_PLOT:
