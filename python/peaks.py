@@ -43,6 +43,8 @@ print(f'Average time between peaks: {avg_time:.3f} ± {err_time:.3f} seconds')
 print(f'Standard deviation of time between peaks: {std_time:.3f} seconds')
 print(f'Estimated wavelength of the laser: {wavelength:.3f} ± {wavelength_err:.3f} nm')
 
+# TODO: Try to print some sample plots to add to my notebook
+
 # Plot the peaks for testing
 if SHOW_PLOT:
     plt.plot(time, amp)
