@@ -7,10 +7,10 @@ from datetime import datetime, timedelta
 plt.rcParams.update({'font.size': 14})
 
 # Define global variables here
-FILE_NAME = 'wavelength2.csv'
+FILE_NAME = 'wavelength1.csv'
 FILE_PATH = 'data/'
 SAVE_PATH = 'data/clean/'
-SAVE_DATA = True
+SAVE_DATA = False
 PLOT_RAW = False
 
 # Import the data from csv
