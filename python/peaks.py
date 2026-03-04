@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
 # Define global variables here
-FILE_NAME = 'old3.csv'
+FILE_NAME = 'wavelength2.csv'
 FILE_PATH = 'data/clean/'
-SHOW_PLOT = True
+SAVE_PLOT = True
 
 # Define physical constants here
 motor_speed = 50/61 * 1e-6
@@ -19,7 +19,7 @@ time = df.iloc[:, 0].values
 amp = df.iloc[:, 1].values
 
 # Find the peaks in the signal
-peaks, _ = find_peaks(amp, height=-11)
+peaks, _ = find_peaks(-amp)
 
 # Extract the time and amplitude of the peaks
 time_peaks = time[peaks]
@@ -43,10 +43,18 @@ print(f'Average time between peaks: {avg_time:.3f} ± {err_time:.3f} seconds')
 print(f'Standard deviation of time between peaks: {std_time:.3f} seconds')
 print(f'Estimated wavelength of the laser: {wavelength:.3f} ± {wavelength_err:.3f} nm')
 
-# TODO: Try to print some sample plots to add to my notebook
+### Plot the peaks for testing
 
-# Plot the peaks for testing
-if SHOW_PLOT:
-    plt.plot(time, amp)
-    plt.plot(time_peaks, amp_peaks, 'x')
+# Plot the signal and the peaks
+plt.plot(time, amp)
+plt.plot(time_peaks, amp_peaks, 'x')
+
+# Cutoff the data so it looks better printed
+plt.xlim(time_peaks[0], time_peaks[30])
+
+# Show/save the plot
+if SAVE_PLOT:
+    plt.savefig(f'{FILE_NAME[:-4]}.png')
+    plt.clf()
+else:
     plt.show()
